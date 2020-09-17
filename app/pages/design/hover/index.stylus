@@ -1,0 +1,313 @@
+/***
+*  refered to https://codepen.io/kjbrum/pen/wBBLXx
+*  this is created by Kyle Brumm
+*/
+
+.design-display {
+  @apply flex flex-wrap;
+  & > *  {
+    @apply m-4;
+  }
+}
+#text {
+  z-index 50;  
+}
+
+.btn {
+  @apply block;
+  @apply border border-current;
+  @apply relative;
+  @apply overflow-hidden;
+  @apply transition duration-500 ease-in-out;
+  z-index: 1;
+
+  &::before,
+  &::after {
+    @apply absolute;
+    @apply transition duration-500 ease-in-out;
+    zR-index: -1;
+  }
+  &:focus {
+    @apply outline-none;  
+  }
+
+}
+
+$btn-width =  9rem;
+$btn-height = 3rem;
+$btn-color = #fc8181;
+
+.btn--swipe{
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+
+  &::before {
+    @apply inset-0;
+    @apply bg-red-400;
+    content: '';
+    width: $btn-width;
+    height: $btn-height;
+    transform: translateX(-100%);
+  }
+
+  &:hover {
+    color: tint($btn-color,75%)
+    &::before {
+      transform: translateX(0);
+    }
+  }
+}
+
+/***
+* btn--sharp-swipe
+* border-rightとborder-bottomのプロパティにより、
+* 左側に三角形を作ることができる。
+* さらにright -50pxを指定することで、はみ出した50pxに対して加工し、それをhoverすると
+* 元に戻るという仕組み
+*/
+
+.btn--sharp-swipe{
+  $triangle-aria = 50px;
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+  &::before {
+    @apply top-0 bottom-0 left-0;
+    right: $triangle-aria * -1;
+    content: '';
+    border-right: $triangle-aria solid transparent;
+    border-bottom: $btn-height solid $btn-color;
+    transform: translateX(-100%);
+  }
+
+  &:hover {
+    color: tint($btn-color,75%)
+    &::before {
+      transform: translateX(0);
+    }
+  }
+}
+
+/***
+* btn--2sharp-swipe
+* btn--sharp-swipeを発展させ、beforeとafterの両方に指定し、
+* hover時に元に戻す
+*/
+
+.btn--2sharp-swipe{
+  $triangle-aria = 1.8rem;
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+  &::before, 
+  &::after {
+    @apply inset-0;
+    content: '';
+    border-bottom: $btn-height solid $btn-color;
+  }
+
+  &::before {
+    right: $triangle-aria * -1;
+    border-right: $triangle-aria solid transparent;    
+    transform: translateX(-100%);
+  }
+  &::after {
+    left: $triangle-aria * -1;
+    border-left: $triangle-aria solid transparent;    
+    transform: translateX(100%);
+  }
+
+  &:hover {
+    color: tint($btn-color,75%)
+    &::before{
+      transform: translateX(-40%);
+    }
+    &::after{
+      transform: translateX(40%);
+    }
+  }
+}
+/***
+* btn--diagonal-close
+* btn--2sharp-swipeを発展させ、beforeとafterの両方に指定し、
+* hover時に元に戻す
+*/
+
+.btn--diagonal-close{
+  $triangle-aria = 1.8rem;
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+  &::before, 
+  &::after {
+    @apply inset-0;
+    content: '';
+  }
+
+  &::before {
+    right: $triangle-aria * -1;
+    border-bottom: $btn-height solid $btn-color;
+    border-right: $triangle-aria solid transparent;    
+    transform: translateX(-100%);
+  }
+  &::after {
+    left: $triangle-aria * -1;
+    border-top: $btn-height solid $btn-color;    
+    border-left: $triangle-aria solid transparent;
+    transform: translateX(100%);
+  }
+
+  &:hover {
+    color: tint($btn-color,75%)
+    &::before{
+      transform: translateX(-40%);
+    }
+    &::after{
+      transform: translateX(40%);
+    }
+  }
+}
+/***
+* btn--zoning
+*/
+
+.btn--zoning{
+  $triangle-aria = 1.8rem;
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+  &::before, 
+  &::after {
+    @apply inset-0;
+    content: '';
+    border-top: $btn-height * 0.5 solid $btn-color;
+    border-bottom: $btn-height * 0.5 solid $btn-color;
+  }
+
+  &::before,{
+    border-right: $triangle-aria * 0.5  solid transparent;    
+    transform: translateX(-100%);
+  }
+
+  &::after  {
+    border-left: $triangle-aria * 0.5  solid transparent;
+    transform: translateX(100%);
+  }
+
+  &:hover {
+    color: tint($btn-color,75%)
+    &::before{
+      transform: translateX(-40%);
+    }
+    &::after{
+      transform: translateX(40%);
+    }
+  }
+}
+
+/***
+* btn--4corners
+*/
+
+.btn--4corners{
+  $triangle-aria = 1.8rem;
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+  &::before, 
+  &::after,
+  .btn--4corners-fragments:before,
+  .btn--4corners-fragments:after {
+    @apply inset-0;
+    content: '';
+    background-color: $btn-color;
+  }
+
+  /**
+  * btnの共通で、position:absoluteとtansitionは設定されているが、このクラスには付けられていないので、同様の設定をしている。
+  */
+  .btn--4corners-fragments:before,
+  .btn--4corners-fragments:after {
+    @apply absolute;
+    @apply transition duration-500 ease-in-out;
+    z-index: -1;      
+  }
+
+  &::before{
+    transform: translate(-100%, -100%);
+  }
+  &::after  {
+    transform: translate(-100%, 100%);
+  }
+
+  .btn--4corners-fragments:before{
+    transform: translate(100%, -100%);
+  }
+  .btn--4corners-fragments:after{
+    transform: translate(100%, 100%);
+  }
+
+  &:hover {
+    color: tint($btn-color,75%)
+
+    &::before{
+      transform: translate(-50%, -50%);
+    }
+
+    &::after{
+      transform: translate(-50%, 50%);
+    }
+    
+    .btn--4corners-fragments:before{
+      transform: translate(50%, -50%);
+    }
+    .btn--4corners-fragments:after{
+      transform: translate(50%, 50%);
+    }
+  }
+}
+
+/***
+* btn--slice
+*/
+
+.btn--slice{
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+
+  &::before, 
+  &::after{
+    @apply w-0 h-0;
+    @apply border-0 border-solid;
+    transition-property:border-width;
+    content: '';
+    transform: rotate(360deg)
+  }
+
+  &::before{
+    @apply bottom-0 left-0;
+    border-color: transparent transparent transparent $btn-color;
+  }
+  &::after  {
+    @apply top-0 right-0;
+    border-color: transparent $btn-color transparent transparent;
+  }
+
+  &:hover {
+    color: tint($btn-color,75%)
+
+    &::before,
+    &::after{
+      border-width: $btn-height $btn-width * 1.05;
+    }
+  }
+}

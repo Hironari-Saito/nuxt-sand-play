@@ -1,0 +1,51 @@
+$btn-width =  9rem;
+$btn-height = 3rem;
+$btn-color = #fc8181;
+
+.btn {
+  @apply block;
+  @apply border border-current;
+  @apply relative;
+  @apply overflow-hidden;
+  @apply transition duration-500 ease-in-out;
+
+  z-index: 1;
+
+  &::before,
+  &::after {
+    @apply absolute;
+    @apply transition duration-500 ease-in-out;
+
+    z-index: -1;
+  }
+  &:focus {
+    @apply outline-none;
+  }
+}
+
+.btn--position {
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+
+  span {
+    @apply inset-0;
+    @apply block;
+    @apply absolute;
+    @apply w-0 h-0;
+    @apply rounded-full;
+    background-color: $btn-color;
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
+  &:hover {
+    color: tint($btn-color,75%);
+    span {
+      height: $btn-width * 2.25;
+      width: $btn-width * 2.25;
+    }
+  }
+}
