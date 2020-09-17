@@ -1,0 +1,55 @@
+$btn-width =  9rem;
+$btn-height = 3rem;
+$btn-color = #fc8181;
+
+.btn--alternate {
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+
+  &::before,
+  &::after,
+  .btn--alternate-fragments::before,
+  .btn--alternate-fragments::after {
+    @apply absolute inset-0;
+    @apply transition duration-500 ease-in-out;        
+    transition-property: height;
+    content: '';
+    background-color: $btn-color;  
+    @apply h-0;
+    width: $btn-width * 0.2525;
+    z-index: -1;
+  }
+
+  &::before {
+    @apply left-0;  
+  }
+  &::after {
+    left: 50%;  
+  }
+  .btn--alternate-fragments{
+    &::before,
+    &::after {
+      @apply top-auto bottom-0;
+    }
+
+    &::before {
+      left: 25%;
+    }
+    &::after {
+      left: 75%;
+    }
+  }  
+
+  &:hover {
+    color: tint($btn-color,75%);
+
+    &::before,
+    &::after,
+    .btn--alternate-fragments::before,
+    .btn--alternate-fragments::after {
+      height: $btn-height;
+    }
+  }
+}

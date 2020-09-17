@@ -23,9 +23,11 @@
           </button>
           <button class="flex-item btn btn--slice">slice</button>
           <Position />
+          <Alternate />
+          <UpdownSlide />
+          <VerticalOverlap />
         </div>
         <div class="wrap">
-          <a class="btn-7" href="#"><span>Alternate</span></a>
           <a class="btn-8" href="#">Smoosh</a>
           <a class="btn-9" href="#"><span>Vertical Overlap</span></a>
           <a class="btn-10" href="#"><span>Horizontal Overlap</span></a>

@@ -1,0 +1,36 @@
+$btn-width =  9rem;
+$btn-height = 3rem;
+$btn-color = #fc8181;
+
+.btn--updown-slide {
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+
+  &::before,
+  &::after{
+    @apply absolute inset-0;
+    @apply transition duration-500 ease-in-out;        
+    content: '';
+    background-color: $btn-color;  
+    z-index: -1;
+  }
+
+  &::before {
+    transform: translateY(-100%);
+  }
+  &::after {
+    transform: translateY(100%);
+  }
+
+  &:hover {
+    color: tint($btn-color,75%);
+    &::before {
+      transform: translateY(-50%);
+    }
+      &::after {
+        transform: translateY(50%);
+    }
+  }
+}

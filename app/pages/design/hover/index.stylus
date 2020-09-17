@@ -25,7 +25,7 @@
   &::after {
     @apply absolute;
     @apply transition duration-500 ease-in-out;
-    zR-index: -1;
+    z-index: -1;
   }
   &:focus {
     @apply outline-none;  
@@ -298,7 +298,8 @@ $btn-color = #fc8181;
     border-color: transparent transparent transparent $btn-color;
   }
   &::after  {
-    @apply top-0 right-0;
+    @apply top-0;
+    right: -1px; //chromeだと微妙にずらさないとガタガタしている。原因はコンテンツエリアが微妙に左にずれているため。safariでは上記はみられなかった。
     border-color: transparent $btn-color transparent transparent;
   }
 
@@ -307,7 +308,7 @@ $btn-color = #fc8181;
 
     &::before,
     &::after{
-      border-width: $btn-height $btn-width * 1.05;
+      border-width: $btn-height $btn-width * 1.15;
     }
   }
 }
