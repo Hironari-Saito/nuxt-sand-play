@@ -1,0 +1,49 @@
+$btn-width =  9rem;
+$btn-height = 3rem;
+$btn-color = #fc8181;
+
+.btn--horizontal-overlap {
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height;
+
+  &::before,
+  &::after,
+  .btn--horizontal-overlap-fragments::before,
+  .btn--horizontal-overlap-fragments::after {
+    @apply absolute top-0 left-0;
+    @apply transition duration-500 ease-in-out;
+    @apply w-0;
+    transition-property: width;
+    height: $btn-height;
+    content: '';
+    background-color: rgba($btn-color, 0.3);
+    z-index: -1;
+  }
+
+  &::after,
+  .btn--horizontal-overlap-fragments::before {
+    @apply left-auto right-0;
+  }
+
+  .btn--horizontal-overlap-fragments::before,
+  .btn--horizontal-overlap-fragments::after {
+    transition-delay: 0.3s;
+  }
+
+  &:hover {
+    color: tint($btn-color,75%);
+
+    &::before,
+    &::after,
+    .btn--horizontal-overlap-fragments::before,
+    .btn--horizontal-overlap-fragments::after  {
+      width: $btn-width;    
+    }
+
+    &:active {
+      background-color: $btn-color;
+    }
+  }
+}

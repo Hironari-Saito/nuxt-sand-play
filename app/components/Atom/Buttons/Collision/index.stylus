@@ -1,0 +1,76 @@
+$btn-width =  9rem;
+$btn-height = 3rem;
+$btn-color = #fc8181;
+
+.btn--collision {
+  color: $btn-color;
+  background-color: transparent;
+  width: $btn-width;
+  height: $btn-height; 
+  &::before,
+  &::after {
+    @apply absolute;
+    @apply rounded-full;
+
+    top: 50%;
+    width: 1rem;
+    height: 1rem;
+    content: '';
+    background-color: $btn-color;
+    z-index: -1;
+  }
+
+  &::before {
+    left: -2rem;  
+    transform: translate(-50%, -50%);
+  }
+
+  &::after {
+    right: -2rem;
+    transform: translate(50%, -50%);
+  }
+
+  &:hover {
+    color: tint($btn-color,75%);
+
+    &::before {
+      animation: cross-left 0.8s both;
+      animation-direction: alternate;
+    }
+    &::after {   
+      animation: cross-right 0.8s both;
+      animation-direction: alternate;    
+    }
+  }
+}
+@keyframes cross-left {
+  0% {
+    left: -2rem;
+  }
+  50% {
+    left: 50%;
+    height: 1rem;
+    width: 1rem;
+  }
+  100% {
+    left: 50%;
+    height: $btn-width * 1.5;
+    width: $btn-width * 1.5;
+  }
+}
+
+@keyframes cross-right {
+  0% {
+    right: -2rem;
+  }
+  50% {
+    right: 50%;
+    height: 1rem;
+    width: 1rem;
+  }
+  100% {
+    right: 50%;
+    height: $btn-width * 1.5;
+    width: $btn-width * 1.5;
+  }
+}

@@ -2,27 +2,6 @@ $btn-width =  9rem;
 $btn-height = 3rem;
 $btn-color = #fc8181;
 
-.btn {
-  @apply block;
-  @apply border border-current;
-  @apply relative;
-  @apply overflow-hidden;
-  @apply transition duration-500 ease-in-out;
-
-  z-index: 1;
-
-  &::before,
-  &::after {
-    @apply absolute;
-    @apply transition duration-500 ease-in-out;
-
-    z-index: -1;
-  }
-  &:focus {
-    @apply outline-none;
-  }
-}
-
 .btn--position {
   color: $btn-color;
   background-color: transparent;

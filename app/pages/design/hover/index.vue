@@ -26,12 +26,8 @@
           <Alternate />
           <UpdownSlide />
           <VerticalOverlap />
-        </div>
-        <div class="wrap">
-          <a class="btn-8" href="#">Smoosh</a>
-          <a class="btn-9" href="#"><span>Vertical Overlap</span></a>
-          <a class="btn-10" href="#"><span>Horizontal Overlap</span></a>
-          <a class="btn-11" href="#">Collision</a>
+          <HorizontalOverlap />
+          <Collision />
         </div>
       </div>
     </section>

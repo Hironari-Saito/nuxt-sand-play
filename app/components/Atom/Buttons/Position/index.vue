@@ -3,7 +3,6 @@
     class="btn btn--position"
     @mouseenter.stop="mouseEvent($event)"
     @mouseleave.prevent="mouseEvent($event)"
-    @click="click($event)"
   >
     Position<span ref="circlePosition"></span>
   </button>
